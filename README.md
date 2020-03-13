@@ -1,4 +1,6 @@
 # rock-paper-scissors-lizard-spock-vue
+Implementation of the classic RPSLS Game using Vue/VueX.    
+Game is accessible via https://tardisdriver.github.io/rock-paper-scissors-lizard-spock-vue/
 
 ## Project setup
 ```
