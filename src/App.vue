@@ -1,22 +1,35 @@
+<script>
+import GameContainer from "./components/GameContainer";
+
+export default {
+  name: "App",
+  components: {
+    GameContainer
+  }
+};
+</script>
+
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <GameContainer />
   </div>
 </template>
 
-<script>
-import HelloWorld from './components/HelloWorld.vue'
-
-export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
-</script>
-
 <style>
+@font-face {
+  font-family: "Star Trek Future";
+  src: url("./assets/Star Trek_future.ttf");
+}
+body {
+  background-image: url("./assets/tenforward.jpg");
+}
+h1 {
+  font-family: "Star Trek Future";
+  color: white;
+  font-size: 4.5em;
+  text-shadow: 3px 3px 8px white;
+  margin-bottom: 15px;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -24,5 +37,13 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
