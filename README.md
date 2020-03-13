@@ -1,4 +1,4 @@
-# spock
+# rock-paper-scissors-lizard-spock-vue
 
 ## Project setup
 ```
