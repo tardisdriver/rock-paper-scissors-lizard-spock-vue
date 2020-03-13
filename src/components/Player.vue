@@ -19,6 +19,7 @@ export default {
       let weapon = this.weapons.find(weapon => weapon.name === choice);
       this.icon = weapon.icon;
       this.showWeapons = false;
+      // timeout for more elegant transitions
       setTimeout(() => {
         this.showPlayerChoice = true;
       }, 200);
@@ -27,6 +28,7 @@ export default {
   watch: {
     showPlayerChoice: function(visible) {
       if (visible) {
+        // timeout for more elegant transitions
         setTimeout(() => {
           this.showPlayerChoice = false;
           this.showWeapons = true;
@@ -37,11 +39,11 @@ export default {
 };
 </script>
 <template>
-  <div id="player">
+  <div id="player" class="opponent-box">
     <h2>You</h2>
     <h3 v-if="showPlayerChoice">You Chose:</h3>
     <h3 v-else>Choose Your Weapon:</h3>
-    <div v-if="showPlayerChoice" class="player-choice">
+    <div v-if="showPlayerChoice" class="selection">
       <i :class="icon"></i>
     </div>
     <transition name="fadeIn">
@@ -60,16 +62,6 @@ export default {
 </template>
 
 <style scoped>
-#player {
-  color: white;
-  width: 33%;
-  min-height: 430px;
-  margin: 10px;
-  padding: 10px;
-  border: 2px solid #f8c260;
-  border-radius: 5px;
-  background: rgba(0, 0, 0, 0.8);
-}
 #weapons {
   display: flex;
   flex-direction: column;
@@ -89,9 +81,6 @@ export default {
 .weapon-pic {
   font-size: 2em;
   padding-right: 10px;
-}
-.player-choice {
-  font-size: 10em;
 }
 .fadeIn-enter-active {
   transition: opacity 0.5s;

@@ -68,6 +68,7 @@ export default {
     },
     result: function() {
       if (this.result !== "") {
+        // clear computer's choice and result after 2 seconds to reset game
         setTimeout(() => {
           store.commit("setComputerWeapon", "");
           this.result = "";

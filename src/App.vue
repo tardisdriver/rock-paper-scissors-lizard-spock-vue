@@ -46,4 +46,17 @@ h1 {
 .fade-leave-to {
   opacity: 0;
 }
+.opponent-box {
+  color: white;
+  width: 33%;
+  min-height: 430px;
+  margin: 10px;
+  padding: 10px;
+  border: 2px solid #f8c260;
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.8);
+}
+.selection {
+  font-size: 10em;
+}
 </style>
