@@ -54,11 +54,13 @@ export default {
           (player == "spock" && computer == "rock") ||
           (player == "spock" && computer == "scissors")
         ) {
+          // timeout for more elegant transitions
           setTimeout(() => {
             this.result = "You Win!";
             store.commit("incrementScore", "player");
           }, 700);
         } else {
+          // timeout for more elegant transitions
           setTimeout(() => {
             this.result = "Computer Wins!";
             store.commit("incrementScore", "computer");
