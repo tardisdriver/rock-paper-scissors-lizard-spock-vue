@@ -2,6 +2,7 @@
 import HumanPlayer from "./Player";
 import ComputerPlayer from "./Computer";
 import store from "../../store/store";
+import winner from '../helpers/winner'
 
 export default {
   name: "GameContainer",
@@ -38,33 +39,17 @@ export default {
         this.result = "";
         let player = this.playerChoice;
         let computer = this.computerChoice;
+        const playerWins = winner(`${player}${computer}`) 
         if (player === computer) {
           setTimeout(() => {
             this.result = "It's a tie";
           }, 700);
-        } else if (
-          (player == "rock" && computer == "scissors") ||
-          (player == "rock" && computer == "lizard") ||
-          (player == "paper" && computer == "rock") ||
-          (player == "paper" && computer == "spock") ||
-          (player == "scissors" && computer == "lizard") ||
-          (player == "scissors" && computer == "paper") ||
-          (player == "lizard" && computer == "paper") ||
-          (player == "lizard" && computer == "spock") ||
-          (player == "spock" && computer == "rock") ||
-          (player == "spock" && computer == "scissors")
-        ) {
-          // timeout for more elegant transitions
-          setTimeout(() => {
-            this.result = "You Win!";
-            store.commit("incrementScore", "player");
-          }, 700);
         } else {
-          // timeout for more elegant transitions
-          setTimeout(() => {
-            this.result = "Computer Wins!";
-            store.commit("incrementScore", "computer");
-          }, 700);
+            const whoWon = playerWins ? "player" : "computer"
+            setTimeout(() => {
+              this.result = playerWins ? "You Win!" : "Computer Wins!";
+              store.commit("incrementScore", whoWon);
+            }, 700);
         }
       }
     },
@@ -93,11 +78,6 @@ export default {
       <div class="score-container">
         <h3>Your Score: {{ playerScore }}</h3>
       </div>
-      <!-- <div class="result-container">
-        <transition name="fade">
-          <h2 v-if="result" id="result">{{ result }}</h2>
-        </transition>
-      </div> -->
       <div class="score-container">
         <h3>Computer's Score: {{ computerScore }}</h3>
       </div>

@@ -19,7 +19,8 @@ export default {
     computerChoice: function(choice) {
       this.showComputerChoice = false;
       let weapon = this.weapons.find(weapon => weapon.name === choice);
-      this.icon = weapon.icon;
+      if (weapon) this.icon = weapon.icon;
+      else this.icon = ""
       // timeout for more elegant transitions
       setTimeout(() => {
         this.showComputerChoice = true;

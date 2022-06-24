@@ -8,7 +8,7 @@ const store = new Vuex.Store({
     player: 0,
     computer: 0,
     playerChoice: "",
-    computerChoice: ""
+    computerChoice: "",
   },
   mutations: {
     incrementScore(state, player) {
@@ -19,8 +19,8 @@ const store = new Vuex.Store({
     },
     setComputerWeapon(state, payload) {
       state.computerChoice = payload;
-    }
-  }
+    },
+  },
 });
 
 export default store;
