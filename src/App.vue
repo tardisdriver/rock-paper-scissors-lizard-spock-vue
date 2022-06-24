@@ -36,7 +36,7 @@ h1 {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 0;
 }
 .fade-enter-active,
 .fade-leave-active {
@@ -48,15 +48,32 @@ h1 {
 }
 .opponent-box {
   color: white;
-  width: 33%;
-  min-height: 430px;
+  width: 90%;
+  height:200px;
   margin: 10px;
   padding: 10px;
   border: 2px solid #f8c260;
   border-radius: 5px;
   background: rgba(0, 0, 0, 0.8);
 }
+.box-contents {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
 .selection {
-  font-size: 10em;
+  font-size: 5.5rem;
+}
+@media screen and (min-width: 800px){
+  .opponent-box {
+    width: 33%;
+    min-height: 450px;
+  }
+  .box-contents {
+    flex-direction: column;
+  }
+  .selection {
+  font-size: 10rem;
+}
 }
 </style>

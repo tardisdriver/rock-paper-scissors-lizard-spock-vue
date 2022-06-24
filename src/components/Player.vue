@@ -1,13 +1,13 @@
 <script>
 import store from "../../store/store";
 export default {
-  name: "Player",
+  name: "HumanPlayer",
   props: ["weapons"],
   data() {
     return {
       showPlayerChoice: false,
       showWeapons: true,
-      icon: ""
+      icon: "",
     };
   },
   methods: {
@@ -16,17 +16,17 @@ export default {
       let random = Math.floor(Math.random() * 5);
       store.commit("setComputerWeapon", weapons[random]);
       store.commit("setPlayerWeapon", choice);
-      let weapon = this.weapons.find(weapon => weapon.name === choice);
+      let weapon = this.weapons.find((weapon) => weapon.name === choice);
       this.icon = weapon.icon;
       this.showWeapons = false;
       // timeout for more elegant transitions
       setTimeout(() => {
         this.showPlayerChoice = true;
       }, 200);
-    }
+    },
   },
   watch: {
-    showPlayerChoice: function(visible) {
+    showPlayerChoice: function (visible) {
       if (visible) {
         // timeout for more elegant transitions
         setTimeout(() => {
@@ -34,15 +34,17 @@ export default {
           this.showWeapons = true;
         }, 2500);
       }
-    }
-  }
+    },
+  },
 };
 </script>
 <template>
   <div id="player" class="opponent-box">
-    <h2>You</h2>
-    <h3 v-if="showPlayerChoice">You Chose:</h3>
-    <h3 v-else>Choose Your Weapon:</h3>
+    <div class="box-contents">
+      <h2>You</h2>
+      <h3 v-if="showPlayerChoice">You Chose:</h3>
+      <h3 v-else>Choose Your Weapon:</h3>
+    </div>
     <div v-if="showPlayerChoice" class="selection">
       <i :class="icon"></i>
     </div>
@@ -64,8 +66,10 @@ export default {
 <style scoped>
 #weapons {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
   align-items: center;
+  justify-content: center;
 }
 .weapon-button {
   background-color: #7f66e6;
@@ -74,12 +78,13 @@ export default {
   padding: 10px;
   margin: 5px;
   font-size: 1em;
-  width: 50%;
+  width: 30%;
   min-width: 110px;
   border: none;
+  height: 50px;
 }
 .weapon-pic {
-  font-size: 2em;
+  font-size: 1.3em;
   padding-right: 10px;
 }
 .fadeIn-enter-active {
@@ -87,5 +92,14 @@ export default {
 }
 .fadeIn-enter {
   opacity: 0;
+}
+
+@media screen and (min-width: 800px) {
+  #weapons {
+    flex-direction: column;
+  }
+  .weapon-button {
+    width: 85%;
+  }
 }
 </style>

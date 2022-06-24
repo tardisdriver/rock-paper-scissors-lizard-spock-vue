@@ -1,11 +1,11 @@
 <script>
-import Player from "./Player";
-import Computer from "./Computer";
+import HumanPlayer from "./Player";
+import ComputerPlayer from "./Computer";
 import store from "../../store/store";
 
 export default {
   name: "GameContainer",
-  components: { Player, Computer },
+  components: { HumanPlayer, ComputerPlayer },
   data() {
     return {
       result: "",
@@ -14,8 +14,8 @@ export default {
         { name: "paper", icon: "far fa-hand-paper" },
         { name: "scissors", icon: "far fa-hand-scissors" },
         { name: "lizard", icon: "far fa-hand-lizard" },
-        { name: "spock", icon: "far fa-hand-spock" }
-      ]
+        { name: "spock", icon: "far fa-hand-spock" },
+      ],
     };
   },
   computed: {
@@ -30,10 +30,10 @@ export default {
     },
     computerScore() {
       return store.state.computer;
-    }
+    },
   },
   watch: {
-    computerChoice: function(newChoice) {
+    computerChoice: function (newChoice) {
       if (newChoice !== "") {
         this.result = "";
         let player = this.playerChoice;
@@ -68,7 +68,7 @@ export default {
         }
       }
     },
-    result: function() {
+    result: function () {
       if (this.result !== "") {
         // clear computer's choice and result after 2 seconds to reset game
         setTimeout(() => {
@@ -76,40 +76,94 @@ export default {
           this.result = "";
         }, 2000);
       }
-    }
-  }
+    },
+  },
 };
 </script>
 <template>
   <div id="spock-container">
     <h1>Rock Paper Scissors Lizard Spock</h1>
-    <div id="scoreboard">
-      <h3>Your Score: {{ playerScore }}</h3>
-      <h3>Computer's Score: {{ computerScore }}</h3>
+    <div class="result-container">
+        <transition name="fade">
+          <h2 v-if="result" id="result">{{ result }}</h2>
+        </transition>
+      </div>
+    <div id="game-area">
+      <div id="scoreboard">
+      <div class="score-container">
+        <h3>Your Score: {{ playerScore }}</h3>
+      </div>
+      <!-- <div class="result-container">
+        <transition name="fade">
+          <h2 v-if="result" id="result">{{ result }}</h2>
+        </transition>
+      </div> -->
+      <div class="score-container">
+        <h3>Computer's Score: {{ computerScore }}</h3>
+      </div>
     </div>
     <div id="play-area">
-      <Player :weapons="weapons" />
-      <Computer :weapons="weapons" />
+      <HumanPlayer :weapons="weapons" />
+      <ComputerPlayer :weapons="weapons" />
     </div>
-    <transition name="fade">
-      <h2 v-if="result" id="result">{{ result }}</h2>
-    </transition>
+    </div>
+    
   </div>
 </template>
 
 <style scoped>
+#spock-container h1 {
+  font-size: 2.6rem;
+  margin-top: 1.2rem;
+}
 #result {
-  font-size: 3.1em;
+  font-size: 1.3em;
   color: white;
+  max-width:300px;
+  text-shadow: 2px 2px 6px #999999;
+}
+.result-container {
+  height: 30px;
+  display:flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.score-container {
+  width:250px;
 }
 #play-area {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+}
+#game-area {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 auto;
 }
 #scoreboard {
   display: flex;
   color: white;
   justify-content: space-around;
+  align-items: center;
+  margin: 0 auto;
   font-size: 1.3em;
+  max-width:90%;
+}
+@media screen and (min-width: 800px){
+  #spock-container h1 {
+    font-size: 4rem;
+  }
+  #play-area {
+    flex-direction: row;
+  }
+  #scoreboard {
+    justify-content: space-between;
+  }
+  #result {
+    font-size:2rem;
+  }
 }
 </style>

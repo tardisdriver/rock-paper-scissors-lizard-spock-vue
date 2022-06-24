@@ -2,7 +2,7 @@
 import store from "../../store/store";
 
 export default {
-  name: "Computer",
+  name: "ComputerPlayer",
   props: ["weapons"],
   data() {
     return {
@@ -30,9 +30,11 @@ export default {
 </script>
 <template>
   <div id="computer" class="opponent-box">
-    <h2>Computer</h2>
-    <h3 v-if="computerChoice">Computer Chooses:</h3>
-    <h3 v-else>Computer is waiting...</h3>
+    <div class="box-contents">
+      <h2>Computer</h2>
+      <h3 v-if="computerChoice">Computer Chooses:</h3>
+      <h3 v-else>Computer is waiting...</h3>
+    </div>
     <transition name="fade">
       <span class="selection" v-if="showComputerChoice" key="chosen"
         ><i :class="icon"></i
