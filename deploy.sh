@@ -10,6 +10,5 @@ cd dist
 git init
 git add -A
 git commit -m 'deploy'
-git push -f git@github.com:tardisdriver/rock-paper-scissors-lizard-spock-vue
- master:gh-pages
+git push -f git@github.com:tardisdriver/rock-paper-scissors-lizard-spock-vue.git master:gh-pages
 cd -
